@@ -206,7 +206,7 @@
 			Query="ImportExportXml/SolutionManifest/Version"
 			Value="$(FileVersion)"
 		/>
-		<Message Text="Set Solution version to @(FileVersion)" Importance="high" />
+		<Message Text="Set Solution version to $(FileVersion)" Importance="high" />
 	</Target>
 
 	<Target
