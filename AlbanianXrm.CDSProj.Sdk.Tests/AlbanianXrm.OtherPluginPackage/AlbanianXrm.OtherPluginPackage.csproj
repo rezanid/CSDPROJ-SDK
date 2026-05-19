@@ -15,7 +15,7 @@
     https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets
   -->
   <PropertyGroup>
-    <PackageId>AlbanianXrm.OtherPluginPackage</PackageId>
+    <PackageId>albx_AlbanianXrm.OtherPluginPackage</PackageId>
 	<ManagedIdentityId>316c9a96-293f-46a6-86af-ca020dd5d742</ManagedIdentityId>
     <Version>$(FileVersion)</Version>
     <Authors>BetimBeja</Authors>
