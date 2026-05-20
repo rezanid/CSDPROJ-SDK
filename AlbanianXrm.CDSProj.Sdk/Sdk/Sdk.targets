@@ -46,20 +46,20 @@
 			<_PluginPackageName Condition="!$([System.String]::new('%(DataversePluginPackage.DataversePluginPackageId)').StartsWith('$(PublisherPrefix)_'))">$(PublisherPrefix)_%(DataversePluginPackage.DataversePluginPackageId)</_PluginPackageName>
 
 			<_ManagedIdentityId Condition="'%(DataversePluginPackage.ManagedIdentityId)'!=''">
-				&lt;managedidentityid&gt;
-				&lt;managedidentityid&gt;%(DataversePluginPackage.ManagedIdentityId)&lt;/managedidentityid&gt;
-	&lt;/managedidentityid&gt;</_ManagedIdentityId>
+  &lt;managedidentityid&gt;
+    &lt;managedidentityid&gt;%(DataversePluginPackage.ManagedIdentityId)&lt;/managedidentityid&gt;
+  &lt;/managedidentityid&gt;</_ManagedIdentityId>
 			<_ManagedIdentityId Condition="'%(DataversePluginPackage.ManagedIdentityId)'==''"></_ManagedIdentityId>
 
 			<_PluginPackageXml>&lt;pluginpackage uniquename=&quot;$(_PluginPackageName)&quot;&gt;
-				&lt;exportkeyversion&gt;1&lt;/exportkeyversion&gt;
-				&lt;iscustomizable&gt;1&lt;/iscustomizable&gt;$(_ManagedIdentityId)
-				&lt;name&gt;$(_PluginPackageName)&lt;/name&gt;
-				&lt;package mimetype=&quot;application/octet-stream&quot;&gt;$(_PluginPackageName).nupkg&lt;/package&gt;
-				&lt;statecode&gt;0&lt;/statecode&gt;
-				&lt;statuscode&gt;1&lt;/statuscode&gt;
-				&lt;version&gt;$(FileVersion)&lt;/version&gt;
-	&lt;/pluginpackage&gt;</_PluginPackageXml>
+  &lt;exportkeyversion&gt;1&lt;/exportkeyversion&gt;
+  &lt;iscustomizable&gt;1&lt;/iscustomizable&gt;$(_ManagedIdentityId)
+  &lt;name&gt;$(_PluginPackageName)&lt;/name&gt;
+  &lt;package mimetype=&quot;application/octet-stream&quot;&gt;$(_PluginPackageName).nupkg&lt;/package&gt;
+  &lt;statecode&gt;0&lt;/statecode&gt;
+  &lt;statuscode&gt;1&lt;/statuscode&gt;
+  &lt;version&gt;$(FileVersion)&lt;/version&gt;
+&lt;/pluginpackage&gt;</_PluginPackageXml>
 		</PropertyGroup>
 
 		<Message Text="Copying $(_PluginPackageName): %(DataversePluginPackage.DataversePluginPackageOutput)" Importance="high" />
