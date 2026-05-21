@@ -1,5 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="AlbanianXrm.CDSProj.Sdk/1.0.11">
+	<PropertyGroup>
+		<EnableGitVersioning>true</EnableGitVersioning>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(EnableGitVersioning)' == 'true'">
+		<PackageReference Include="Nerdbank.GitVersioning" Version="3.8.118" PrivateAssets="all" />
+	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\AlbanianXrm.OtherPluginPackage\AlbanianXrm.OtherPluginPackage.csproj" />
 		<ProjectReference Include="..\AlbanianXrm.PluginPackage\AlbanianXrm.PluginPackage.csproj" />

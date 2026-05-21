@@ -1,5 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="AlbanianXrm.CDSProj.Sdk/1.0.11">
+	<PropertyGroup>
+		<EnableGitVersioning>false</EnableGitVersioning>
+	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\AlbanianXrm.OtherPluginPackage\AlbanianXrm.OtherPluginPackage.csproj" />
 		<ProjectReference Include="..\AlbanianXrm.PluginPackage\AlbanianXrm.PluginPackage.csproj" />
