@@ -29,12 +29,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Build.NoTargets" Version="3.7.56" />
+		<PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+			<PrivateAssets>all</PrivateAssets>
+			<Version>3.*</Version>
+		</PackageReference>
+  		<PackageReference Include="Microsoft.Build.NoTargets" Version="3.7.56" />
 	</ItemGroup>
 
 	<Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
 		<PropertyGroup>
 			<PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/ReleaseNotes.txt"))%0a$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/ReleaseNotesArchive.txt"))</PackageReleaseNotes>
 		</PropertyGroup>
+	</Target>
+
+	<Target Name="Update_TestProject_References" AfterTargets="Pack">
+		<ItemGroup>
+			<_TestProject Include="../AlbanianXrm.CDSProj.Sdk.Tests/**/*.cdsproj" />
+		</ItemGroup>
+		<XmlPoke
+			XmlInputPath="%(_TestProject.Identity)"
+			Query="Project/@Sdk"
+			Value="AlbanianXrm.CDSProj.Sdk/$(Version)"
+		/>
+		<Message Text="Set AlbanianXrm.CDSProj.Sdk version to $(Version) for %(_TestProject.Identity)" Importance="high" />
 	</Target>
 </Project>

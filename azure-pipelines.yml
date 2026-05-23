@@ -5,6 +5,11 @@
 
 trigger:
 - main
+- develop
+pr: 
+  branches:
+    include:
+      - develop
 
 pool:
   vmImage: 'windows-latest'
@@ -50,6 +55,13 @@ steps:
     Rename-Item $pcfProjPackage AlbanianXrm.PCFProj.Sdk.nupkg
     Move-Item AlbanianXrm.PCFProj.Sdk/bin/Debug/AlbanianXrm.PCFProj.Sdk.nupkg -destination $(Build.ArtifactStagingDirectory)\PCFProj
     Copy-Item AlbanianXrm.PCFProj.Sdk/ReleaseNotes.txt -Destination $(Build.ArtifactStagingDirectory)\PCFProj\ReleaseNotes.txt
+
+    New-Item -ItemType Directory -Force -Path $(Build.ArtifactStagingDirectory)\WebProj
+    $webProjPackage =  get-item  AlbanianXrm.WebProj.Sdk/bin/Debug/AlbanianXrm.WebProj.Sdk.*.nupkg
+    $webProjPackage.Name.TrimStart("AlbanianXrm.WebProj.Sdk.").TrimEnd(".nupkg") | Out-File -FilePath $(Build.ArtifactStagingDirectory)\WebProj\Version.txt
+    Rename-Item $webProjPackage AlbanianXrm.WebProj.Sdk.nupkg
+    Move-Item AlbanianXrm.WebProj.Sdk/bin/Debug/AlbanianXrm.WebProj.Sdk.nupkg -destination $(Build.ArtifactStagingDirectory)\WebProj
+    Copy-Item AlbanianXrm.WebProj.Sdk/ReleaseNotes.txt -Destination $(Build.ArtifactStagingDirectory)\WebProj\ReleaseNotes.txt
   displayName: Move packages to Artifacts Staging Directory
 
 - task: PublishPipelineArtifact@1
@@ -62,4 +74,10 @@ steps:
   inputs:
     targetPath: ' $(Build.ArtifactStagingDirectory)\PCFProj'
     artifact: 'AlbanianXrm.PCFProj.Sdk'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: ' $(Build.ArtifactStagingDirectory)\WebProj'
+    artifact: 'AlbanianXrm.WebProj.Sdk'
     publishLocation: 'pipeline'
