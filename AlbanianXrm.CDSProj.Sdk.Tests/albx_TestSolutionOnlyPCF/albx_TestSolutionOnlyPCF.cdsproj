@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="AlbanianXrm.CDSProj.Sdk/1.0.10">
-	<ItemGroup>
-		<ProjectReference Include="..\AlbanianXrm.LinearInputPCF\AlbanianXrm.LinearInputPCF.pcfproj" />
-	</ItemGroup>
+<Project Sdk="AlbanianXrm.CDSProj.Sdk/1.0.11-alpha-g81d0e2a88a">
+  <ItemGroup>
+    <ProjectReference Include="..\AlbanianXrm.LinearInputPCF\AlbanianXrm.LinearInputPCF.pcfproj" />
+  </ItemGroup>
 </Project>

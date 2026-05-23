@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.56">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0</TargetFrameworks>
-		<Description>Provides targets for dataverse PCF projects (.pcfproj).</Description>
+		<Description>Provides targets for dataverse WebResource projects (.esproj).</Description>
 		<PackageTags>MSBuild MSBuildSdk dataverse PowerPlatform</PackageTags>
 		<PackageIcon>Logo.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -15,16 +15,17 @@
 
 	<ItemGroup>
 		<Content Include="Sdk/**" Pack="true" PackagePath="Sdk" />
+		<None Include="Content/**" Pack="true" PackagePath="Content" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Logo.png" />
+		<None Remove="Logo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Logo.png" Pack="true" PackagePath="\" />
-	  <None Include="..\LICENSE" Pack="true" PackagePath="\" />
-	  <None Include="README.md" Pack="true" PackagePath="\" />
+		<Content Include="Logo.png" Pack="true" PackagePath="\" />
+		<None Include="..\LICENSE" Pack="true" PackagePath="\" />
+		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,7 +33,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<Version>3.*</Version>
 		</PackageReference>
-  		<PackageReference Include="Microsoft.Build.NoTargets" Version="3.7.56" />
+		<PackageReference Include="Microsoft.Build.NoTargets" Version="3.7.56" />
 	</ItemGroup>
 
 	<Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
@@ -43,13 +44,13 @@
 
 	<Target Name="Update_TestProject_References" AfterTargets="Pack">
 		<ItemGroup>
-			<_TestProject Include="../AlbanianXrm.CDSProj.Sdk.Tests/**/*.pcfproj" />
+			<_TestProject Include="../AlbanianXrm.CDSProj.Sdk.Tests/**/*.esproj" />
 		</ItemGroup>
 		<XmlPoke
 			XmlInputPath="%(_TestProject.Identity)"
 			Query="Project/@Sdk"
-			Value="AlbanianXrm.PCFProj.Sdk/$(Version)"
+			Value="AlbanianXrm.WebProj.Sdk/$(Version)"
 		/>
-		<Message Text="Set AlbanianXrm.PCFProj.Sdk version to $(Version) for %(_TestProject.Identity)" Importance="high" />
+		<Message Text="Set AlbanianXrm.WebProj.Sdk version to $(Version) for %(_TestProject.Identity)" Importance="high" />
 	</Target>
 </Project>
